@@ -1,37 +1,33 @@
-import { type User, type InsertUser } from "@shared/schema";
+import { type Song, type InsertSong, type SongElement, type InsertSongElement } from "@shared/schema";
 import { randomUUID } from "crypto";
 
-// modify the interface with any CRUD methods
-// you might need
-
 export interface IStorage {
-  getUser(id: string): Promise<User | undefined>;
-  getUserByUsername(username: string): Promise<User | undefined>;
-  createUser(user: InsertUser): Promise<User>;
+  getSongs(): Promise<Song[]>;
+  getSong(id: string): Promise<Song | undefined>;
+  getSongElements(songId: string): Promise<SongElement[]>;
 }
 
 export class MemStorage implements IStorage {
-  private users: Map<string, User>;
+  private songs: Map<string, Song>;
+  private songElements: Map<string, SongElement>;
 
   constructor() {
-    this.users = new Map();
+    this.songs = new Map();
+    this.songElements = new Map();
   }
 
-  async getUser(id: string): Promise<User | undefined> {
-    return this.users.get(id);
+  async getSongs(): Promise<Song[]> {
+    return Array.from(this.songs.values());
   }
 
-  async getUserByUsername(username: string): Promise<User | undefined> {
-    return Array.from(this.users.values()).find(
-      (user) => user.username === username,
+  async getSong(id: string): Promise<Song | undefined> {
+    return this.songs.get(id);
+  }
+
+  async getSongElements(songId: string): Promise<SongElement[]> {
+    return Array.from(this.songElements.values()).filter(
+      (element) => element.songId === songId
     );
-  }
-
-  async createUser(insertUser: InsertUser): Promise<User> {
-    const id = randomUUID();
-    const user: User = { ...insertUser, id };
-    this.users.set(id, user);
-    return user;
   }
 }
 
