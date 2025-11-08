@@ -122,6 +122,41 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  app.patch("/api/admin/songs/:id", requireAdmin, async (req, res, next) => {
+    try {
+      const result = insertSongSchema.partial().safeParse(req.body);
+      if (!result.success) {
+        return res.status(400).json({ message: "Invalid input", errors: result.error });
+      }
+
+      const song = await storage.updateSong(req.params.id, result.data);
+      if (!song) {
+        return res.status(404).json({ message: "Song not found" });
+      }
+      res.json(song);
+    } catch (error: any) {
+      next(error);
+    }
+  });
+
+  app.delete("/api/admin/songs/:id", requireAdmin, async (req, res, next) => {
+    try {
+      await storage.deleteSong(req.params.id);
+      res.json({ message: "Song deleted successfully" });
+    } catch (error: any) {
+      next(error);
+    }
+  });
+
+  app.delete("/api/admin/elements/:id", requireAdmin, async (req, res, next) => {
+    try {
+      await storage.deleteSongElement(req.params.id);
+      res.json({ message: "Element deleted successfully" });
+    } catch (error: any) {
+      next(error);
+    }
+  });
+
   // Favorites
   app.get("/api/favorites", requireAuth, async (req, res) => {
     const favorites = await storage.getFavorites(req.user!.id);

@@ -8,10 +8,13 @@ export interface IStorage {
   getSongElements(songId: string): Promise<SongElement[]>;
   createSong(song: InsertSong): Promise<Song>;
   createSongElement(element: InsertSongElement): Promise<SongElement>;
+  updateSong(id: string, song: Partial<InsertSong>): Promise<Song | undefined>;
+  deleteSong(id: string): Promise<void>;
+  deleteSongElement(id: string): Promise<void>;
   getUserByEmail(email: string): Promise<User | undefined>;
   createUser(user: InsertUser): Promise<User>;
   getUserById(id: string): Promise<User | undefined>;
-  getFavorites(userId: string): Promise<string[]>;
+  getFavorites(userId: string): Promise<Song[]>;
   addFavorite(userId: string, songId: string): Promise<void>;
   removeFavorite(userId: string, songId: string): Promise<void>;
   isFavorite(userId: string, songId: string): Promise<boolean>;
@@ -41,6 +44,19 @@ export class DbStorage implements IStorage {
     return result[0];
   }
 
+  async updateSong(id: string, song: Partial<InsertSong>): Promise<Song | undefined> {
+    const result = await db.update(songs).set(song).where(eq(songs.id, id)).returning();
+    return result[0];
+  }
+
+  async deleteSong(id: string): Promise<void> {
+    await db.delete(songs).where(eq(songs.id, id));
+  }
+
+  async deleteSongElement(id: string): Promise<void> {
+    await db.delete(songElements).where(eq(songElements.id, id));
+  }
+
   async getUserByEmail(email: string): Promise<User | undefined> {
     const result = await db.select().from(users).where(eq(users.email, email));
     return result[0];
@@ -57,9 +73,18 @@ export class DbStorage implements IStorage {
     return result[0];
   }
 
-  async getFavorites(userId: string): Promise<string[]> {
-    const result = await db.select({ songId: favorites.songId }).from(favorites).where(eq(favorites.userId, userId));
-    return result.map(f => f.songId);
+  async getFavorites(userId: string): Promise<Song[]> {
+    const result = await db
+      .select({
+        id: songs.id,
+        name: songs.name,
+        ytMusic: songs.ytMusic,
+        createdAt: songs.createdAt,
+      })
+      .from(favorites)
+      .innerJoin(songs, eq(favorites.songId, songs.id))
+      .where(eq(favorites.userId, userId));
+    return result;
   }
 
   async addFavorite(userId: string, songId: string): Promise<void> {
