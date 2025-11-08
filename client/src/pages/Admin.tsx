@@ -6,7 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
 import Header from "@/components/Header";
 import { useAuth } from "@/lib/auth";
-import { useLocation } from "wouter";
+import { useLocation, Link } from "wouter";
 import { useToast } from "@/hooks/use-toast";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Check, Upload, X } from "lucide-react";
@@ -118,7 +118,12 @@ export default function Admin() {
       <Header />
 
       <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <h1 className="text-3xl font-serif font-bold mb-8">Admin Panel</h1>
+        <div className="flex items-center justify-between mb-8 gap-4 flex-wrap">
+          <h1 className="text-3xl font-serif font-bold">Admin Panel</h1>
+          <Link href="/admin/manage">
+            <Button variant="outline">Manage Existing Songs</Button>
+          </Link>
+        </div>
 
         <Card>
           <CardHeader>

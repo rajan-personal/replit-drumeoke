@@ -35,9 +35,9 @@ export default function DrumPlayer() {
   const toggleFavoriteMutation = useMutation({
     mutationFn: async () => {
       if (isFavorite) {
-        return await apiRequest(`/api/favorites/${id}`, { method: 'DELETE' });
+        return await apiRequest('DELETE', `/api/favorites/${id}`);
       } else {
-        return await apiRequest(`/api/favorites/${id}`, { method: 'POST' });
+        return await apiRequest('POST', `/api/favorites/${id}`);
       }
     },
     onSuccess: () => {
