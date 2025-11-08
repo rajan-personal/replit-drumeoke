@@ -16,53 +16,57 @@ export default function Header({ showBackButton, backPath }: HeaderProps) {
   };
 
   return (
-    <header className="sticky top-0 z-50 glass-header shadow-md">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between gap-4">
+    <header className="sticky top-0 z-50 glass-clear border-b border-border/10 backdrop-blur-2xl">
+      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between gap-4">
         <div className="flex items-center gap-3">
           <Link href="/">
-            <h1 className="text-2xl font-serif font-bold text-primary cursor-pointer tracking-tight">Drumeoke</h1>
+            <h1 className="text-2xl font-serif font-bold text-primary cursor-pointer tracking-tight hover:opacity-80 transition-opacity">Drumeoke</h1>
           </Link>
         </div>
 
-        <div className="flex items-center gap-2">
+        <nav className="flex items-center gap-2">
           {user ? (
             <>
               {user.isAdmin && (
                 <Link href="/admin">
-                  <Button variant="outline" size="sm" className="gap-2 btn-capsule" data-testid="button-admin">
+                  <Button variant="outline" size="sm" className="gap-2 btn-capsule glass-hover" data-testid="button-admin">
                     <Shield className="h-4 w-4" />
-                    Admin
+                    <span className="hidden sm:inline">Admin</span>
                   </Button>
                 </Link>
               )}
               <Link href="/songs">
-                <Button variant="outline" size="sm" className="btn-capsule" data-testid="button-browse">
-                  Browse Songs
+                <Button variant="outline" size="sm" className="btn-capsule glass-hover" data-testid="button-browse">
+                  <span className="hidden sm:inline">Browse Songs</span>
+                  <span className="sm:hidden">Browse</span>
                 </Button>
               </Link>
               <Link href="/favorites">
-                <Button variant="outline" size="sm" className="gap-2 btn-capsule" data-testid="button-favorites">
+                <Button variant="outline" size="sm" className="gap-2 btn-capsule glass-hover" data-testid="button-favorites">
                   <Heart className="h-4 w-4" />
-                  Favorites
+                  <span className="hidden sm:inline">Favorites</span>
                 </Button>
               </Link>
-              <Button variant="ghost" size="icon" className="rounded-full" onClick={handleLogout} data-testid="button-logout">
+              <Button variant="ghost" size="icon" className="rounded-full glass-hover" onClick={handleLogout} data-testid="button-logout">
                 <LogOut className="h-4 w-4" />
               </Button>
             </>
           ) : (
             <>
               <Link href="/songs">
-                <Button variant="outline" size="sm" className="btn-capsule">Browse Songs</Button>
+                <Button variant="outline" size="sm" className="btn-capsule glass-hover">
+                  <span className="hidden sm:inline">Browse Songs</span>
+                  <span className="sm:hidden">Browse</span>
+                </Button>
               </Link>
               <Link href="/login">
-                <Button variant="ghost" size="sm" className="btn-capsule" data-testid="button-login">
+                <Button size="sm" className="btn-capsule glass-glow" data-testid="button-login">
                   Login
                 </Button>
               </Link>
             </>
           )}
-        </div>
+        </nav>
       </div>
     </header>
   );
