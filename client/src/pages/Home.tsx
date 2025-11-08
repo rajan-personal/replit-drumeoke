@@ -1,21 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { Music, Drum, Star } from "lucide-react";
 import { Link } from "wouter";
+import Header from "@/components/Header";
 import heroImage from "@assets/generated_images/Modern_electronic_drum_kit_1aeccf2a.png";
 
 export default function Home() {
   return (
     <div className="min-h-screen">
-      <header className="border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
-          <h1 className="text-2xl font-serif font-bold text-primary">Drumeoke</h1>
-          <Link href="/songs">
-            <Button variant="outline" data-testid="button-browse-songs-header">
-              Browse Songs
-            </Button>
-          </Link>
-        </div>
-      </header>
+      <Header />
 
       <section 
         className="relative min-h-[70vh] flex items-center justify-center overflow-hidden"

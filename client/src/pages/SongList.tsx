@@ -1,7 +1,5 @@
-import { Button } from "@/components/ui/button";
 import SongCard from "@/components/SongCard";
-import { Link } from "wouter";
-import { ArrowLeft } from "lucide-react";
+import Header from "@/components/Header";
 import { useQuery } from "@tanstack/react-query";
 import type { Song } from "@shared/schema";
 
@@ -12,18 +10,7 @@ export default function SongList() {
 
   return (
     <div className="min-h-screen">
-      <header className="border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
-            <Link href="/">
-              <Button variant="ghost" size="icon" data-testid="button-back-home">
-                <ArrowLeft className="h-5 w-5" />
-              </Button>
-            </Link>
-            <h1 className="text-2xl font-serif font-bold text-primary">Drumeoke</h1>
-          </div>
-        </div>
-      </header>
+      <Header />
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
         <h2 className="text-3xl sm:text-4xl font-serif font-bold mb-8">Song Library</h2>
