@@ -90,16 +90,29 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  const validDrumTypes = ["kick", "snare", "hihat", "tom1", "tom2", "tom3", "crash", "ride", "floortom"];
+  const validAudioMimes = ["audio/mpeg", "audio/mp3", "audio/wav", "audio/ogg", "audio/webm"];
+
   app.post("/api/admin/songs/:id/elements", requireAdmin, upload.single('audio'), async (req, res, next) => {
     try {
       if (!req.file) {
         return res.status(400).json({ message: "Audio file is required" });
       }
 
+      const { elementType } = req.body;
+      
+      if (!elementType || !validDrumTypes.includes(elementType)) {
+        return res.status(400).json({ message: `Invalid elementType. Must be one of: ${validDrumTypes.join(', ')}` });
+      }
+
+      if (!validAudioMimes.includes(req.file.mimetype)) {
+        return res.status(400).json({ message: `Invalid file type. Must be an audio file (mp3, wav, ogg, webm)` });
+      }
+
       const url = `/public/audio/${req.file.filename}`;
       const element = await storage.createSongElement({
         songId: req.params.id,
-        elementType: req.body.elementType,
+        elementType,
         url,
       });
 
@@ -117,6 +130,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   app.post("/api/favorites/:songId", requireAuth, async (req, res, next) => {
     try {
+      const song = await storage.getSong(req.params.songId);
+      if (!song) {
+        return res.status(404).json({ message: "Song not found" });
+      }
       await storage.addFavorite(req.user!.id, req.params.songId);
       res.json({ message: "Added to favorites" });
     } catch (error: any) {
@@ -126,6 +143,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   app.delete("/api/favorites/:songId", requireAuth, async (req, res, next) => {
     try {
+      const song = await storage.getSong(req.params.songId);
+      if (!song) {
+        return res.status(404).json({ message: "Song not found" });
+      }
       await storage.removeFavorite(req.user!.id, req.params.songId);
       res.json({ message: "Removed from favorites" });
     } catch (error: any) {
