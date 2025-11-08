@@ -108,6 +108,7 @@ export default function DrumPlayer() {
                   <Button
                     variant="outline"
                     size="icon"
+                    className="rounded-full glass-hover"
                     onClick={() => toggleFavoriteMutation.mutate()}
                     data-testid="button-favorite"
                   >
@@ -120,7 +121,7 @@ export default function DrumPlayer() {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <Button variant="outline" className="gap-2" data-testid="button-youtube-link">
+                    <Button variant="outline" className="gap-2 btn-capsule glass-hover" data-testid="button-youtube-link">
                       <ExternalLink className="h-4 w-4" />
                       Watch on YouTube
                     </Button>

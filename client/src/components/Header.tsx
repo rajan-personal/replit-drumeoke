@@ -29,34 +29,34 @@ export default function Header({ showBackButton, backPath }: HeaderProps) {
             <>
               {user.isAdmin && (
                 <Link href="/admin">
-                  <Button variant="outline" size="sm" className="gap-2" data-testid="button-admin">
+                  <Button variant="outline" size="sm" className="gap-2 btn-capsule" data-testid="button-admin">
                     <Shield className="h-4 w-4" />
                     Admin
                   </Button>
                 </Link>
               )}
               <Link href="/songs">
-                <Button variant="outline" size="sm" data-testid="button-browse">
+                <Button variant="outline" size="sm" className="btn-capsule" data-testid="button-browse">
                   Browse Songs
                 </Button>
               </Link>
               <Link href="/favorites">
-                <Button variant="outline" size="sm" className="gap-2" data-testid="button-favorites">
+                <Button variant="outline" size="sm" className="gap-2 btn-capsule" data-testid="button-favorites">
                   <Heart className="h-4 w-4" />
                   Favorites
                 </Button>
               </Link>
-              <Button variant="ghost" size="icon" onClick={handleLogout} data-testid="button-logout">
+              <Button variant="ghost" size="icon" className="rounded-full" onClick={handleLogout} data-testid="button-logout">
                 <LogOut className="h-4 w-4" />
               </Button>
             </>
           ) : (
             <>
               <Link href="/songs">
-                <Button variant="outline" size="sm">Browse Songs</Button>
+                <Button variant="outline" size="sm" className="btn-capsule">Browse Songs</Button>
               </Link>
               <Link href="/login">
-                <Button variant="ghost" size="sm" data-testid="button-login">
+                <Button variant="ghost" size="sm" className="btn-capsule" data-testid="button-login">
                   Login
                 </Button>
               </Link>

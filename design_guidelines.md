@@ -1,220 +1,276 @@
-# Drumeoke Design Guidelines - Liquid Glass Edition
+# Drumeoke Design Guidelines - Apple Liquid Glass Edition
 
 ## Design Philosophy
 
-Inspired by Apple's Liquid Glass design language, Drumeoke features a translucent, glass-like aesthetic that brings elegance and vitality while maintaining focus on content. The design emphasizes depth, dimensionality, and fluid transformations combined with music-focused elements.
+Drumeoke embodies Apple's Liquid Glass design language: a translucent, multi-layered material system that interacts beautifully with light and backgrounds. This creates tangible depth, spatial hierarchy, and fluid vitality while maintaining absolute focus on the drumming experience.
 
-## Material System: Liquid Glass
+## Core Liquid Glass Principles
 
-### Core Principles
-- **Translucency**: All surfaces use frosted glass effects with backdrop blur
-- **Depth**: Multiple layers create visual hierarchy through translucency and shadows
-- **Adaptivity**: Materials intelligently adapt between light and dark environments
-- **Vitality**: Subtle animations and specular highlights bring elements to life
-- **Content Focus**: Controls and chrome recede to emphasize content
+### Material Properties
+- **Translucency**: Multi-layered glass with subtle refraction and reflection
+- **Depth**: Spatial hierarchy through layered transparency and shadows
+- **Fluidity**: Smooth, responsive animations with ramp timing (slow start, then accelerate)
+- **Light Interaction**: Specular highlights, subtle gradients, and dynamic saturation
+- **Adaptivity**: Seamless transitions between light and dark modes
 
-### Glass Material Properties
-- Backdrop blur with subtle transparency (60-90% opacity)
-- Soft, diffused borders with minimal contrast
-- Specular highlights on interactive elements
-- Smooth gradients that reflect surroundings
-- Refined, layered shadows for depth
+### Glass Variants
+- **Glass Regular** (.glass-regular): Primary material for cards and containers
+  - Multi-layer gradient background with refraction
+  - Backdrop blur (24px) with saturation boost (180%)
+  - Inset highlight for depth
+  - Adaptive opacity (8% light / 5% dark)
+  
+- **Glass Clear** (.glass-clear): Subtle variant for minimal UI
+  - Ultra-transparent (3% light / 2% dark)
+  - Lighter blur (16px) with saturation (150%)
+  - Used for headers, subtle containers
 
-## Color Palette
+## Color Palette - Apple Inspired
 
-### Background Layers
-- **Base Background**: Very subtle gradient, barely perceptible
-- **Glass Surfaces**: Semi-transparent with backdrop blur
-- **Content Areas**: Slightly more opaque for readability
+### Light Mode
+- **Background**: Very light blue-gray (210° 20% 98%)
+- **Foreground**: Pure black (0° 0% 0%) for maximum clarity
+- **Primary**: Apple Blue (211° 100% 50%) - iconic #007AFF
+- **Card**: Pure white (0° 0% 100%)
+- **Muted**: Subtle gray (210° 20% 96%)
+- **Border**: Light gray (210° 20% 90%)
 
-### Accent Colors
-- **Primary**: Deep purple with glass overlay
-- **Interactive States**: Subtle color shifts with specular highlights
-- **Borders**: Soft, barely visible dividers (10-15% opacity)
+### Dark Mode  
+- **Background**: Dark charcoal (0° 0% 7%) - not pure black
+- **Foreground**: Pure white (0° 0% 100%)
+- **Primary**: Lighter Apple Blue (211° 100% 55%)
+- **Card**: Dark gray (0° 0% 12%)
+- **Muted**: Medium gray (0° 0% 18%)
+- **Border**: Border gray (0° 0% 20%)
 
 ### Text Hierarchy
-- **Primary Text**: High contrast, crisp and readable
-- **Secondary Text**: 70% opacity of primary
-- **Tertiary Text**: 50% opacity of primary
+- **Primary**: White text for maximum legibility on glass
+- **Secondary**: 80% opacity for supporting info
+- **Tertiary**: 60% opacity for minimal details
+- Color used sparingly in backgrounds only
 
-## Typography
+## Typography - SF Pro Family
 
-### Headings
-- **Font**: Inter for clean, modern feel
-- **Weight**: 600-700 for headings
-- **Letter Spacing**: Tight (-0.02em) for refined look
+### Font Stack
+```css
+--font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Helvetica Neue", sans-serif
+--font-serif: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", sans-serif
+--font-mono: "SF Mono", "Monaco", "Cascadia Code", "Courier New", monospace
+```
 
-### Body Text
-- **Font**: Inter
-- **Weight**: 400-500 for comfortable reading
-- **Line Height**: 1.6 for optimal readability
+### Weight System
+- **Body Text**: 500 (medium) for enhanced readability in spatial context
+- **Titles/Headings**: 700 (bold) for clear hierarchy
+- **Labels**: 600 (semibold) for drum pad labels
 
-### Drum Labels
-- **Font**: Space Mono (monospace) for technical, musical feel
-- **Weight**: 500-600
-- **Case**: Uppercase with generous letter spacing (0.1em)
-- **Size**: Small but readable (text-xs to text-sm)
+### Sizing
+- Hero headings: text-5xl to text-7xl
+- Page headings: text-3xl to text-4xl  
+- Card titles: text-xl
+- Body: base size with 500 weight
+- Drum labels: text-sm with uppercase + tracking-wider
 
-## Layout System
+## Iconography - Circular Layered Elements
 
-**Spacing Scale**: Consistent rhythm using Tailwind units
-- Component padding: p-6 to p-8
-- Section spacing: py-12 to py-20
-- Card gaps: gap-4 to gap-6
-- Container max-widths: max-w-7xl for full sections, max-w-4xl for content
+### Structure (3D Parallax Effect)
+1. **Background Layer**: Outer circle with glass-clear material
+2. **Middle Layer**: Slightly smaller circle with primary color tint
+3. **Foreground Layer**: Icon centered with primary color
+4. **Enhancement**: System adds depth, specular highlights, and shadows automatically
+
+### Icon Sizes
+- Feature cards: 20x20 outer / 16x16 middle / 8x8 icon
+- Song cards: 14x14 outer / 10x10 middle / 5x5 icon
+- Drum pads: 8x8 outer / 4x4 middle circle
+
+### Always Circular
+- Icons presented in perfect circles for spatial design
+- Creates natural 3D parallax when layered
+- Better eye-tracking targeting
+
+## Roundedness & Shape System
+
+### Deeply Rounded Corners
+- **Primary Cards**: rounded-3xl (48px radius)
+- **Secondary Elements**: rounded-2xl (32px radius)
+- **Small Components**: rounded-xl (24px radius)
+- **Icon Buttons**: rounded-full (perfect circles)
+
+### Concentric Formula
+```
+inner_corner_radius = outer_radius - padding
+```
+
+Example:
+```css
+.concentric-outer {
+  border-radius: 2rem;    /* 32px */
+  padding: 1rem;          /* 16px */
+}
+.concentric-inner {
+  border-radius: 1rem;    /* 32px - 16px = 16px */
+}
+```
+
+### Button Shapes
+- **Capsule Buttons** (.btn-capsule): Full-height rounded ends for primary actions
+- **Circular Buttons**: Icon-only buttons use rounded-full
+- **Dynamic Corners**: Adaptive rounding based on content
+
+## Layout & Spacing
+
+### Minimum Touch Targets
+- **All Interactive Elements**: 60px minimum (touch-target class)
+- **Icon Buttons**: 60px × 60px minimum
+- **Drum Pads**: Circular with ample padding for accuracy
+
+### Spacing Rules
+- **Between Interactive Elements**: 4px minimum (gap-1)
+- **Between Stacked Buttons**: 16px minimum (gap-4)
+- **Card Padding**: 24-32px (p-6 to p-8)
+- **Section Spacing**: 64-80px (py-16 to py-20)
+
+### Centered Content
+- Key information centered in user's field of view
+- Drum pad grid centered with balanced spacing
+- Hero content centered with generous margins
+
+## Animations & Interactions
+
+### Ramp Animations (Slow Start → Accelerate)
+```css
+cubic-bezier(0.34, 1.56, 0.64, 1)
+```
+- Entry animations: 400ms ramp-in
+- Hover transitions: 320ms with ramp timing
+- Active press: 150ms ramp timing
+- Creates smooth, delightful feel
+
+### Hover Effects
+- Scale: translateY(-2px) scale(1.02)
+- Shadow: Enhanced with Apple Blue tint
+- Timing: 320ms ramp curve
+- Glow: Subtle blue halo appears
+
+### Active/Press Effects  
+- Scale: scale(0.96) for tactile feedback
+- Shadow: Compressed with inset shadow
+- Timing: 150ms ramp curve
+- Feel: Satisfying physical press
+
+### Circular Pulse Feedback
+- Activates on press/touch
+- Radiates from touch point
+- Blue tinted ring expands and fades
+- Duration: 600ms with ramp curve
+- Creates haptic-like visual feedback
+
+### Fluid Morphing
+- Smooth border-radius transitions
+- Content adapts fluidly during state changes
+- No jarring layout shifts
+- Organic, living feel
 
 ## Component Styling
 
+### Drum Pads (Circular Glass)
+- **Shape**: Perfect circles with touch-target size
+- **Material**: glass-regular with specular-highlight
+- **Icon**: Layered circular icon system (3 layers)
+- **Label**: Below icon, medium weight, uppercase
+- **Interactions**: 
+  - Hover: glass-hover (lift + glow)
+  - Active: glass-active (press + shadow)
+  - Press: pulse-feedback (circular pulse)
+- **Spacing**: p-1 wrapper for breathing room
+
 ### Cards
-- Translucent background with backdrop blur (backdrop-blur-xl)
-- Very subtle border (border border-white/10 in light, border-black/10 in dark)
-- Soft shadow for elevation (shadow-xl with colored tint)
-- Rounded corners (rounded-2xl for large cards, rounded-xl for medium)
-- Generous padding (p-6 to p-8)
-- Background: bg-white/70 dark:bg-black/40
+- **Material**: glass-card (enhanced glass-regular)
+- **Corners**: rounded-3xl for deep rounding
+- **Icons**: Layered circular icons
+- **Hover**: glass-hover with ramp animation
+- **Shadow**: Multi-layer with Apple Blue tint
+- **Entry**: ramp-animation with staggered delays
 
 ### Buttons
-- **Primary**: Glass surface with colored tint and glow effect
-- **Secondary**: Frosted glass with subtle border
-- **Ghost**: Minimal with hover glass effect
-- **Hover**: Gentle brightness increase with scale 1.02
-- **Active**: Slight scale down (0.98) with deeper glow
+- **Primary**: Capsule shape with glass-glow
+- **Outline**: Capsule with glass-hover
+- **Icon Only**: Circular (rounded-full)
+- **Size**: Minimum 60px touch target
+- **Feedback**: Built-in hover/active states
 
-### Drum Pads
-- Large glass tiles with subtle gradient overlay
-- Specular highlight on top edge for 3D effect
-- Heavy backdrop blur effect
-- Interactive states: Glow and scale transform
-- Shadow depth increases dramatically on press
-- Background: Translucent with tinted glass effect
-- Size: min-h-[80px] on mobile, larger on desktop
-
-### Header/Navigation
-- Fixed translucent bar with heavy backdrop blur
-- Minimal height for content focus
-- Smooth transitions
-- Background: bg-white/80 dark:bg-black/60 with backdrop-blur-xl
-- Border bottom: border-white/20 dark:border-black/20
-
-### Input Fields
-- Glass surface with very subtle background
-- Soft border that glows on focus
-- Comfortable padding (px-4 py-3)
-- Background: bg-white/50 dark:bg-black/30
-- Backdrop blur for depth
-
-## Homepage Design
-
-### Hero Section (min-h-[80vh])
-- Large, bold heading with glass text effect
-- Translucent card container with backdrop blur
-- Primary CTA button with glass material and glow
-- Subtle gradient background
-- Music-focused imagery with glass overlay
-
-### Features Section
-- 3-column grid (responsive)
-- Glass cards with hover lift effect
-- Icons with subtle glow
-- Concise, centered text
-
-## Song List Page
+### Header
+- **Material**: glass-clear for subtlety
+- **Position**: Fixed with high z-index
+- **Buttons**: All capsule-shaped
+- **Icon Buttons**: Circular
+- **Blur**: Maximum blur for chrome recession
 
 ### Song Cards
-- Glass material cards in grid layout
-- Hover: Lift with increased blur and glow
-- Song name in bold, clear typography
-- Subtle music-themed iconography
-- Smooth transition animations
-
-## Drum Player Page
-
-### Player Layout
-- Song title with glass background bar
-- YouTube link button with glass effect
-- Centered drum pad grid with generous spacing
-- All controls use glass material
-
-### Drum Pad Grid (3x3 Roland Layout)
-```
-[Crash]    [Tom1]     [Ride]
-[Tom2]     [Snare]    [Tom3]
-[Kick]     [HiHat]    [FloorTom]
-```
-- Grid spacing: gap-3 to gap-4
-- Each pad: Square aspect ratio
-- Glass material with gradient overlay
-- Active state: Scale + glow + shadow increase
+- **Material**: glass-card
+- **Shape**: rounded-3xl
+- **Icon**: Layered circular music icon
+- **Interaction**: glass-hover + glass-active
+- **Size**: touch-target minimum
 
 ## Effects & Polish
 
-### Backdrop Blur
-- Default: backdrop-blur-xl for most glass surfaces
-- Intense: backdrop-blur-2xl for overlays
-- Subtle: backdrop-blur-lg for lightweight elements
-
-### Shadows
-- Layered shadows for depth
-- Soft, diffused appearance
-- Color-tinted shadows
-- Multiple layers: shadow-lg + custom colored shadow
-
-### Gradients
-- Subtle, multi-stop gradients for glass effect
-- Light source simulation
-- Used sparingly for maximum impact
-
 ### Specular Highlights
-- Top edge highlights on interactive elements
-- Simulates light reflection on glass
-- Subtle white/light overlay
-- Positioned via gradient or pseudo-element
+- Top 60% gradient overlay
+- Light to transparent gradient
+- Simulates glass reflection
+- Enhances depth perception
+- z-index: 1 to sit above content
 
-## Interaction Design
+### Glass Glow (Apple Blue)
+```css
+box-shadow: 
+  0 0 20px hsla(211, 100%, 50%, 0.3),
+  0 0 40px hsla(211, 100%, 50%, 0.15)
+```
+- Used on primary actions
+- Reinforces brand with Apple Blue
+- Adaptive intensity
 
-### Hover States
-- Scale: 1.02 (subtle lift)
-- Brightness increase
-- Glow intensification
-- Smooth 200ms transition
+### Shadow System
+- Real shadows (not just borders)
+- Multi-layer for realism
+- Colored tints (not just black/gray)
+- Depth increases on interaction
 
-### Active/Pressed States
-- Scale: 0.98 (tactile press)
-- Increased glow and shadow depth
-- Quick 100ms transition
-- Clear visual feedback
+## Dark Mode Adaptivity
 
-### Focus States
-- Glass-effect ring with color
-- High contrast for accessibility
-- Smooth animation
-
-### Animations
-- Duration: 200-300ms for most
-- Easing: ease-out for natural feel
-- Prefer transform and opacity (no layout shifts)
-
-## Dark Mode
-
-- Glass materials become slightly more opaque
-- Borders use lighter colors
-- Shadows use colored tints
-- Text maintains contrast ratios
-- Same visual hierarchy maintained
+- Glass becomes slightly more opaque for contrast
+- Borders lighten (white instead of black basis)
+- Shadows gain colored tints
+- Text maintains white for legibility
+- Same visual hierarchy preserved
+- Seamless transition between modes
 
 ## Accessibility
 
-- WCAG AA contrast ratios on all glass surfaces
-- Focus indicators clearly visible
-- Touch targets minimum 44x44px
-- Reduced motion support
-- Screen reader friendly
+- **Contrast**: WCAG AA on all glass surfaces
+- **Touch Targets**: 60px minimum
+- **Focus Indicators**: Clearly visible ring
+- **Reduced Motion**: Honor prefers-reduced-motion
+- **Screen Readers**: Semantic HTML maintained
 
 ## Key Specifications
 
 - Mobile-first responsive design
-- Touch-friendly interactions
-- Instant audio feedback
-- High performance (optimized blur usage)
-- Smooth 60fps animations
-- Glass effects degrade gracefully on older devices
+- Instant audio feedback (onMouseDown/onTouchStart)
+- High-performance blur (optimized usage)
+- 60fps animations (transform/opacity only)
+- Graceful degradation on older devices
+- Apple-quality polish throughout
+
+## Drum Pad Grid (3x3 Roland Layout)
+```
+[Crash]    [Tom1]     [Ride]
+[Tom2]     [Snare]    [Tom3]  
+[Kick]     [HiHat]    [FloorTom]
+```
+- Gap: 4px between pads (gap-1)
+- Each pad: Circular, 60px+ minimum
+- Centered layout with balanced spacing
+- Responsive sizing for all screens
