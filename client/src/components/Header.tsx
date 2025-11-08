@@ -16,11 +16,11 @@ export default function Header({ showBackButton, backPath }: HeaderProps) {
   };
 
   return (
-    <header className="border-b">
+    <header className="sticky top-0 z-50 glass-header shadow-md">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between gap-4">
         <div className="flex items-center gap-3">
           <Link href="/">
-            <h1 className="text-2xl font-serif font-bold text-primary cursor-pointer">Drumeoke</h1>
+            <h1 className="text-2xl font-serif font-bold text-primary cursor-pointer tracking-tight">Drumeoke</h1>
           </Link>
         </div>
 
