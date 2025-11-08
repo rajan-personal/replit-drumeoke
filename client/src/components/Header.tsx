@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { useAuth } from "@/lib/auth";
-import { LogOut, User, Shield } from "lucide-react";
+import { LogOut, User, Shield, Heart } from "lucide-react";
 
 interface HeaderProps {
   showBackButton?: boolean;
@@ -38,6 +38,12 @@ export default function Header({ showBackButton, backPath }: HeaderProps) {
               <Link href="/songs">
                 <Button variant="outline" size="sm" data-testid="button-browse">
                   Browse Songs
+                </Button>
+              </Link>
+              <Link href="/favorites">
+                <Button variant="outline" size="sm" className="gap-2" data-testid="button-favorites">
+                  <Heart className="h-4 w-4" />
+                  Favorites
                 </Button>
               </Link>
               <Button variant="ghost" size="icon" onClick={handleLogout} data-testid="button-logout">

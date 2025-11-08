@@ -10,6 +10,7 @@ import DrumPlayer from "@/pages/DrumPlayer";
 import Login from "@/pages/Login";
 import Signup from "@/pages/Signup";
 import Admin from "@/pages/Admin";
+import Favorites from "@/pages/Favorites";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -21,6 +22,7 @@ function Router() {
       <Route path="/login" component={Login} />
       <Route path="/signup" component={Signup} />
       <Route path="/admin" component={Admin} />
+      <Route path="/favorites" component={Favorites} />
       <Route component={NotFound} />
     </Switch>
   );
