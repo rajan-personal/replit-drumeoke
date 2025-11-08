@@ -38,7 +38,7 @@ export default function Favorites() {
         ) : favorites && favorites.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {favorites.map((song) => (
-              <SongCard key={song.id} song={song} />
+              <SongCard key={song.id} id={song.id} name={song.name} />
             ))}
           </div>
         ) : (
