@@ -1,5 +1,6 @@
-import { type Song, type InsertSong, type SongElement, type InsertSongElement } from "@shared/schema";
-import { randomUUID } from "crypto";
+import { type Song, type SongElement, songs, songElements } from "@shared/schema";
+import { db } from "./db";
+import { eq } from "drizzle-orm";
 
 export interface IStorage {
   getSongs(): Promise<Song[]>;
@@ -7,28 +8,19 @@ export interface IStorage {
   getSongElements(songId: string): Promise<SongElement[]>;
 }
 
-export class MemStorage implements IStorage {
-  private songs: Map<string, Song>;
-  private songElements: Map<string, SongElement>;
-
-  constructor() {
-    this.songs = new Map();
-    this.songElements = new Map();
-  }
-
+export class DbStorage implements IStorage {
   async getSongs(): Promise<Song[]> {
-    return Array.from(this.songs.values());
+    return await db.select().from(songs);
   }
 
   async getSong(id: string): Promise<Song | undefined> {
-    return this.songs.get(id);
+    const result = await db.select().from(songs).where(eq(songs.id, id));
+    return result[0];
   }
 
   async getSongElements(songId: string): Promise<SongElement[]> {
-    return Array.from(this.songElements.values()).filter(
-      (element) => element.songId === songId
-    );
+    return await db.select().from(songElements).where(eq(songElements.songId, songId));
   }
 }
 
-export const storage = new MemStorage();
+export const storage = new DbStorage();
