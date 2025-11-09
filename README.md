@@ -2,7 +2,7 @@
 
 **Drum + Karaoke = Drumeoke** - An interactive web application that lets you play along with your favorite YouTube songs using a virtual 3x3 Roland-format drum pad.
 
-Built for the Replit Hackathon 2024.
+Built for the Replit Hackathon 2025.
 
 ## 🎵 What is Drumeoke?
 
