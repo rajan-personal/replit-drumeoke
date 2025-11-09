@@ -103,7 +103,7 @@ export default function DrumPlayer() {
               <h2 className="text-3xl sm:text-4xl font-serif font-bold" data-testid="text-song-title">
                 {song.name}
               </h2>
-              <div className="flex items-center gap-2 flex-wrap">
+              <div className="flex items-center gap-2 flex-wrap self-end sm:self-auto">
                 {user && (
                   <Button
                     variant="outline"
