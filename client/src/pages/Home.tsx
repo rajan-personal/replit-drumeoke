@@ -80,7 +80,7 @@ export default function Home() {
 
       <footer className="border-t py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-muted-foreground">
-          <p>&copy; 2024 Drumeoke. Drum along to the rhythm.</p>
+          <p>&copy; 2025 Drumeoke. Drum along to the rhythm.</p>
         </div>
       </footer>
     </div>
