@@ -6,29 +6,35 @@ Built for the Replit Hackathon 2025.
 
 ## 🎵 What is Drumeoke?
 
-Drumeoke is a music practice web app designed for drummers and rhythm enthusiasts. Browse through a curated library of songs, each with professionally recorded drum samples for different drum components (kick, snare, hi-hat, toms, crash, ride, floor tom), and play along in real-time while watching the original song on YouTube.
+Drumeoke is a music practice web app designed for drummers and rhythm enthusiasts. Browse through a curated library of songs, each featuring **authentic drum sounds extracted manually from the original recordings**.
 
-Whether you're learning to drum, practicing your timing, or just want to jam along to your favorite tracks, Drumeoke provides an engaging and interactive way to develop your rhythm skills.
+### 🎯 What Makes Drumeoke Unique?
+
+**Authentic Sound Extraction** - Unlike other drum practice apps that use generic or synthesized drum samples, Drumeoke provides the *exact* drum sounds from the actual songs you're playing along with. Each kick, snare, hi-hat, tom, crash, and ride sound is manually extracted from the original track, giving you an authentic playing experience that matches the real recording.
+
+Whether you're learning to drum, practicing your timing, or just want to jam along to your favorite tracks with the real drum sounds, Drumeoke provides an engaging and interactive way to develop your rhythm skills while hearing the exact sounds the original drummer used.
 
 ## ✨ Key Features
 
 ### For Users
-- **Browse Song Library** - Explore a collection of songs with custom drum samples
+- **Authentic Drum Sounds** - Play with exact drum sounds manually extracted from the original songs (not generic samples!)
+- **Browse Song Library** - Explore a curated collection of songs with manually extracted drum elements
 - **3x3 Drum Pad** - Roland-format grid layout featuring 9 drum components:
   - Crash, Ride, Hi-Hat (top row)
   - Tom 1, Tom 2, Tom 3 (middle row)
   - Kick, Snare, Floor Tom (bottom row)
-- **YouTube Integration** - Watch the original song while you play
+- **YouTube Integration** - Watch the original song while you play along with the real drum sounds
 - **Favorite Songs** - Mark your favorite tracks for quick access
 - **Responsive Design** - Works seamlessly on desktop, tablet, and mobile devices
 - **Low-latency Audio** - Instant drum pad response using optimized audio playback
 
 ### For Admins
 - **Song Management** - Add, edit, and delete songs
-- **Element Upload** - Upload custom drum samples (MP3/WAV) for each drum component
+- **Element Upload** - Upload manually extracted drum sounds (MP3/WAV) for each drum component
 - **Missing Elements Detection** - Automatically identifies which drum samples are missing from songs
-- **Bulk Upload** - Add multiple drum elements to existing songs at once
+- **Bulk Upload** - Add multiple manually extracted drum elements to existing songs at once
 - **YouTube Link Management** - Set and update YouTube video IDs for each song
+- **Manual Extraction Workflow** - Designed for admins who extract authentic drum sounds from original tracks
 
 ## 🎨 Design System
 
