@@ -136,7 +136,7 @@ All secrets are managed automatically by Replit:
 
 ## 🎓 Credits
 
-Created for the **Replit Hackathon 2024** by demonstrating:
+Created for the **Replit Hackathon 2025** by demonstrating:
 - Full-stack TypeScript development
 - Modern React patterns with hooks and React Query
 - Secure authentication and authorization
